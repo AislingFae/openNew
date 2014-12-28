@@ -1,0 +1,14 @@
+#!/bin/bash
+
+path=$(cd $1; pwd)
+
+osascript << EOF 
+property the_Path : "$path"
+set the_directory to (POSIX file the_Path) as alias
+tell application "Finder"
+     activate 
+     make new Finder window
+    set target of front Finder window to the_directory
+end tell
+
+EOF
